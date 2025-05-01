@@ -9,10 +9,8 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY package.json pnpm-lock.yaml* .npmrc* ./
-
-# Use --immutable instead of --frozen-lockfile with pnpm
-RUN corepack enable pnpm && pnpm i --immutable
+COPY package.json package-lock.json* .npmrc* ./
+RUN npm ile
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -22,7 +20,7 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN corepack enable pnpm && pnpm run build
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
