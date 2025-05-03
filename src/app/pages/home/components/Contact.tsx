@@ -1,14 +1,67 @@
-export default function Contact() {
+"use client";
+
+import { SiGithub, SiLinkedin, SiMedium, SiX, SiDevdotto, SiMinutemailer, SiAboutdotme } from "react-icons/si";
+import Link from "next/link";
+
+interface ContactLink {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+}
+
+const contacts: ContactLink[] = [
+  {
+    href: "mailto:you@example.com",
+    label: "Email",
+    icon: <SiMinutemailer className="w-5 h-5" />,
+  },
+  {
+    href: "https://github.com/yourusername",
+    label: "GitHub",
+    icon: <SiGithub className="w-5 h-5" />,
+  },
+  {
+    href: "https://linkedin.com/in/yourusername",
+    label: "LinkedIn",
+    icon: <SiLinkedin className="w-5 h-5" />,
+  },
+  {
+    href: "https://medium.com/@yourusername",
+    label: "Medium",
+    icon: <SiMedium className="w-5 h-5" />,
+  },
+  {
+    href: "https://twitter.com/yourusername",
+    label: "Twitter",
+    icon: <SiX className="w-5 h-5" />,
+  },
+  {
+    href: "https://dev.to/yourusername",
+    label: "Dev.to",
+    icon: <SiDevdotto className="w-5 h-5" />,
+  },
+  {
+    href: "https://yourwebsite.com",
+    label: "Website",
+    icon: <SiAboutdotme className="w-5 h-5" />,
+  },
+];
+
+export default function ContactLinks() {
   return (
-    <section id="contact" className="py-16 px-6 max-w-xl mx-auto text-center">
-      <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
-      <p className="mb-6 text-gray-700">Interested in working together? Let’s talk!</p>
-      <a
-        href="mailto:flavio@example.com"
-        className="inline-block px-6 py-2 bg-accent text-white rounded-xl hover:bg-indigo-600 transition"
-      >
-        Email Me
-      </a>
-    </section>
+    <div className="flex flex-wrap gap-4">
+      {contacts.map(({ href, label, icon }) => (
+        <Link
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition"
+        >
+          {icon}
+          <span>{label}</span>
+        </Link>
+      ))}
+    </div>
   );
 }

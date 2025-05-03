@@ -8,9 +8,9 @@ export default async function Projects() {
   const pinnedRepos: PinnedRepo[] = await getAsync(username);
 
   return (
-    <section id="projects" className="py-16">
+    <section id="projects" className="py-8">
       <Container>
-        <h3 className="text-2xl font-semibold mb-8">Projetos</h3>
+        <h3 className="text-2xl font-semibold mb-8 text-center">Projetos</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {pinnedRepos?.length > 0 ? (
             pinnedRepos.map((repo: PinnedRepo, i: number) => (
@@ -33,22 +33,3 @@ export default async function Projects() {
     </section>
   );
 }
-
-// import { projects } from "@/app/data/projects";
-// import ProjectCard from "@/app/pages/home/components/Project/ProjectCard";
-// import Container from "@/app/pages/shared/components/Container";
-
-// export default function Projects() {
-//   return (
-//     <section id="projects" className="py-16">
-//       <Container>
-//         <h3 className="text-2xl font-semibold mb-8">Projectos</h3>
-//         <div className="grid sm:grid-cols-2 gap-6">
-//           {projects.map((project, i) => (
-//             <ProjectCard key={i} title={project.title} description={project.description} />
-//           ))}
-//         </div>
-//       </Container>
-//     </section>
-//   );
-// }
